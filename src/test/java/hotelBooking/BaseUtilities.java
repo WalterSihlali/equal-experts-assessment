@@ -18,7 +18,7 @@ public class BaseUtilities {
     JavascriptExecutor jExecutor;
     WebDriverWait driverWait;
     static Logger logger = Logger.getLogger(BaseUtilities.class.getName());
-    String propertyFile = "./src/test/resources/booking.properties";
+    String propertyFile = "./src/test/resources/equal-experts.properties";
     private static String screenshotName;
     String appURL = getConfigPropertyValue(propertyFile, "url");
 
