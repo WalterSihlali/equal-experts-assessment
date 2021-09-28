@@ -61,7 +61,7 @@ public class TestRunner {
      */
     public static void copyLatestExtentReport() throws IOException {
         String timestamp = new SimpleDateFormat("yyyy:MM:dd_HH:mm:ss").format(Calendar.getInstance().getTime()).replaceAll(":", "-");
-        File source = new File(System.getProperty("user.dir") + "/target/cucumber-reports/equal-expert-report.html");
+        File source = new File(System.getProperty("user.dir") + "/target/cucumber-reports/equal-experts-report.html");
         File file = new File(System.getProperty("user.dir") + "/reports");
         if(!file.exists()) {
             try {
@@ -70,7 +70,7 @@ public class TestRunner {
                 logger.info( ex.getLocalizedMessage());
             }
         }
-        File destination = new File(System.getProperty("user.dir") + "/reports/equal-expert-report" + timestamp + ".html");
+        File destination = new File(System.getProperty("user.dir") + "/reports/equal-experts-report" + timestamp + ".html");
         copyFileUsingStream(source, destination);
     }
 
