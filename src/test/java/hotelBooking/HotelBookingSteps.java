@@ -76,6 +76,8 @@ public class HotelBookingSteps extends BaseUtilities {
             Assert.assertEquals(1, checkinLabels);
             Assert.assertEquals(1, checkoutLabels);
 
+            currentRecords = driver.findElements(By.cssSelector(PageObjects.BUTTONS)).size();
+
         } catch (NoSuchElementException ex) {
             logger.info("Element not found", ex);
         }
@@ -131,7 +133,6 @@ public class HotelBookingSteps extends BaseUtilities {
 
             String latestName = driver.findElement(By.cssSelector(PageObjects.NAME_ENTRY)).getText();
             if (latestName.equalsIgnoreCase(name)) {
-                currentRecords = driver.findElements(By.cssSelector(PageObjects.BUTTONS)).size();
                 driver.findElement(By.cssSelector(PageObjects.NEW_ENTRY_DELETE)).click();
                 newRecords = currentRecords -1;
 
