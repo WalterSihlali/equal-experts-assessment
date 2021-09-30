@@ -26,8 +26,10 @@ class PageObjects {
     static String CHECK_OUT_NEXT_MONTH = "#ui-datepicker-div > div > a.ui-datepicker-next.ui-corner-all > span";
     static String CHECK_OUT_DAY ="#ui-datepicker-div > table > tbody > tr:nth-child(5) > td:nth-child(7) > a";
 
-    static String NAME_ENTRY = "#\\32 4902 > div:nth-child(1) > p:nth-child(1)";
-    static String NEW_ENTRY_DELETE = "#\\32 4902 > div:nth-child(7) > input:nth-child(1)";
+    static String NAME_ENTRY = "div:nth-child(1) > p";
+    static String NEW_ENTRY_DELETE = "div:nth-child(7) > input:nth-child(1)";
+    static String RECORDS = "row";
+    static String BUTTONS = "input[type='button']";
 
 
 }

@@ -70,8 +70,14 @@ public class TestRunner {
                 logger.info( ex.getLocalizedMessage());
             }
         }
-        File destination = new File(System.getProperty("user.dir") + "/reports/equal-experts-report" + timestamp + ".html");
-        copyFileUsingStream(source, destination);
+
+        try {
+            File destination = new File(System.getProperty("user.dir") + "/reports/equal-experts-report" + timestamp + ".html");
+            copyFileUsingStream(source, destination);
+        } catch (NullPointerException ex) {
+            logger.info(ex.getMessage());
+        }
+
     }
 
 }

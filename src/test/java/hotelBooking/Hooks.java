@@ -145,6 +145,7 @@ public class Hooks extends BaseUtilities {
                         encodedBase64 = new String(Base64.encodeBase64(bytes));
                         String img = "data:image/png;base64,"+encodedBase64;
 
+
                         Reporter.addScreenCaptureFromPath(img.toString());                    } catch (Exception e) {
                         logger.info(e.getMessage());
                     }
