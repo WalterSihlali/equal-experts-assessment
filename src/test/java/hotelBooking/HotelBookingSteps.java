@@ -11,6 +11,8 @@ import org.openqa.selenium.*;
 public class HotelBookingSteps extends BaseUtilities {
 
     private static Logger logger = Logger.getLogger(HotelBookingSteps.class.getName());
+    int currentRecords = 0;
+    int newRecords = 0;
 
 
     @Given("^user launches the hotel booking website$")
@@ -25,9 +27,6 @@ public class HotelBookingSteps extends BaseUtilities {
     @When("^user enter new booking \"([^\"]*)\", \"([^\"]*)\" and \"([^\"]*)\"$")
     public void user_enter_new_booking_something_something_and_something(String name, String surname, String price) {
         try {
-            WebElement nameTextField = driver.findElement(By.id(PageObjects.FIRST_NAME_TEXTFIELD));
-            ((JavascriptExecutor) driver).executeScript(
-                    "arguments[0].scrollIntoView();", nameTextField);
 
             waitForElement(By.id(PageObjects.FIRST_NAME_TEXTFIELD));
             driver.findElement(By.id(PageObjects.FIRST_NAME_TEXTFIELD)).sendKeys(name);
@@ -132,18 +131,20 @@ public class HotelBookingSteps extends BaseUtilities {
 
             String latestName = driver.findElement(By.cssSelector(PageObjects.NAME_ENTRY)).getText();
             if (latestName.equalsIgnoreCase(name)) {
+                currentRecords = driver.findElements(By.cssSelector(PageObjects.BUTTONS)).size();
                 driver.findElement(By.cssSelector(PageObjects.NEW_ENTRY_DELETE)).click();
+                newRecords = currentRecords -1;
+
             }
         } catch (NoSuchElementException ex) {
-            logger.info("Element not found", ex);
+            logger.info("Element not found");
         }
     }
 
-    @Then("^booking is deleted successfully \"([^\"]*)\"$")
-    public void booking_is_deleted_successfully(String name) {
+    @Then("^booking is deleted successfully$")
+    public void booking_is_deleted_successfully() {
         try {
-            String latestName = driver.findElement(By.cssSelector(PageObjects.NAME_ENTRY)).getText();
-            Assert.assertNotEquals(latestName, name);
+            Assert.assertEquals(currentRecords-1,newRecords);
 
         } catch (NoSuchElementException ex) {
             logger.info("Element not found", ex);
